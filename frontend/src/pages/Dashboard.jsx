@@ -231,7 +231,7 @@ export default function Dashboard() {
                     type="text"
                     id="projectName"
                     className="form-input"
-                    placeholder="e.g. Website Redesign"
+                    placeholder="e.g. Enest"
                     value={projectName}
                     onChange={(e) => setProjectName(e.target.value)}
                     disabled={isSubmitting}

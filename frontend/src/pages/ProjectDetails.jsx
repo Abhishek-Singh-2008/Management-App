@@ -491,7 +491,7 @@ export default function ProjectDetails() {
                         type="text"
                         id="taskAssignee"
                         className="form-input"
-                        placeholder="e.g. John Doe"
+                        placeholder="e.g. Abhishek"
                         value={taskAssignee}
                         onChange={(e) => setTaskAssignee(e.target.value)}
                         disabled={isSubmitting}
