@@ -1,132 +1,349 @@
-# 🚀 ProManage — Mini Project Management App
+<div align="center">
 
-ProManage is a state-of-the-art, high-fidelity, full-stack project and task management application. It features a premium, responsive glassmorphic dark theme using modern CSS typography (Outfit & Plus Jakarta Sans), sleek slide transitions, micro-animations, and full-featured Kanban boards with click-to-transition directional controls.
+# 🚀 ProManage
+### *Full-Stack Project & Task Management App*
 
-The backend is built using **Node.js, Express.js, and Mongoose (MongoDB)**. It features strict **Joi-based request body validation**, robust JWT-signed authentication, protected session routing, and an integration test suite.
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
----
+**Ek full-stack project management app jisme Kanban board, JWT auth, aur dual-database support hai.**
 
-## 🎨 Visual Excellence & Design System
-ProManage is designed to feel highly premium and fluid:
-*   **Aesthetics**: Glassmorphism cards with fine borders (`backdrop-filter: blur`), dark cosmic slate backgrounds, glowing neon violet accents, ocean cyan highlights for active elements, and emerald green finishes for completed states.
-*   **Micro-interactions**: Scale-ups on hover, slide-down modals, smooth inline card shifts, and responsive task flow animations.
-*   **State management**: Built-in shimmering skeleton loaders for projects and tasks to ensure a smooth transition from loading to loaded, alongside custom empty states with clear action prompts.
-*   **Notification Engine**: Integrated custom Toast notification alerts for seamless form error reporting or action successes.
+[Features](#-features) • [Tech Stack](#-tech-stack) • [Setup](#-setup) • [API Docs](#-api-documentation) • [Folder Structure](#-folder-structure)
 
----
-
-## 💾 Transparent Dual-Mode Database Engine
-To guarantee 100% out-of-the-box runnability without requiring you to have a local MongoDB service configured or running, the backend features a **hybrid database provider layer**:
-1.  **MongoDB Mode (Production/Default)**: Automatically attempts to connect to your MongoDB database (configured via `.env` or defaulting to `mongodb://localhost:27017/mini_project_manager`).
-2.  **Graceful Local JSON Fallback Mode**: If MongoDB is offline, unconfigured, or connection times out, the backend logs a warning and **seamlessly switches to a local file system JSON database (`data.json`)**.
-*   *Note*: The routes, validation middleware, and controllers remain 100% identical. The system abstracts Mongoose models to proxy operations automatically!
+</div>
 
 ---
 
-## 🛠️ Technical Stack
-*   **Frontend**: React (Vite), React Router (v6), custom high-performance Vanilla CSS variables.
-*   **Backend**: Node.js, Express.js, Mongoose/MongoDB, bcryptjs, JSON Web Tokens.
-*   **Validations**: Joi Schema Validations.
-*   **Test Suite**: Jest & Supertest.
+## ✨ Features
+
+- 🔐 **JWT Authentication** — Register/Login with secure token-based sessions (7 din valid)
+- 📂 **Projects CRUD** — Projects banao, edit karo, delete karo (cascade task deletion ke saath)
+- 📋 **Kanban Board** — Tasks ko `To Do → In Progress → Done` me move karo with one click
+- 🔍 **Live Search & Filters** — Tasks dhundo instantly, column-wise filter karo
+- 💾 **Dual Database Mode** — MongoDB nahi mila? Automatically JSON file fallback ho jaata hai
+- ✅ **Joi Validations** — Server-side strict schema validation har request pe
+- 💀 **Shimmer Skeleton Loaders** — Loading states premium feel dete hain
+- 🍞 **Toast Notifications** — Success/error alerts globally
+- 📊 **Analytics Banner** — Project stats at a glance
+- 🎨 **Glassmorphic Dark UI** — Neon violet + ocean cyan theme with smooth animations
 
 ---
 
-## 🚀 Getting Started
+## 🛠 Tech Stack
 
-### 📋 Prerequisites
-*   Node.js (v16.x or higher)
-*   npm (v8.x or higher)
+| Layer | Technology |
+|---|---|
+| **Frontend** | React (Vite), React Router v6, Vanilla CSS |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB (Mongoose) + JSON file fallback |
+| **Auth** | JWT (jsonwebtoken) + bcryptjs |
+| **Validation** | Joi |
+| **Testing** | Jest + Supertest |
+| **Dev Tools** | Nodemon, Concurrently, ESLint |
 
-### 📥 1. Installation
-Simply navigate to the workspace root directory (`c:/Users/abhis/Desktop/New folder`) and run the setup script to install all dependencies for both frontend and backend automatically:
+---
+
+## 📁 Folder Structure
+
+```
+ENEST PROJECT/
+├── backend/
+│   ├── src/
+│   │   ├── config/        # DB connection (MongoDB + JSON fallback)
+│   │   ├── controllers/   # Auth, Project, Task logic
+│   │   ├── middleware/    # JWT auth + Joi validation
+│   │   ├── models/        # User, Project, Task schemas
+│   │   └── routes/        # API route definitions
+│   ├── tests/             # Jest + Supertest integration tests
+│   ├── data.json          # Local JSON DB (auto-used as fallback)
+│   ├── server.js          # Entry point
+│   └── .env               # Environment variables
+│
+├── frontend/
+│   ├── src/
+│   │   ├── context/       # Auth + Toast global contexts
+│   │   ├── pages/         # Login, Dashboard, ProjectDetails
+│   │   ├── services/      # API call functions
+│   │   └── App.jsx        # Routes setup
+│   └── index.html
+│
+└── package.json           # Root workspace scripts
+```
+
+---
+
+## 🚀 Setup
+
+### Prerequisites
+
+- **Node.js** v16+ aur **npm** v8+ hona chahiye
+- MongoDB optional hai — bina MongoDB ke bhi kaam karta hai!
+
+### Step 1 — Clone & Install
+
 ```bash
+git clone https://github.com/your-username/enest-project.git
+cd "ENEST PROJECT"
+
+# Ek command se dono frontend + backend install
 npm run setup
 ```
 
-### 🛰️ 2. Configuration (Optional)
-A `.env` file is already created for you in the `backend/` directory. You can inspect or modify it as needed:
+### Step 2 — Environment Setup (Optional)
+
+`backend/.env` already bana hua hai. Chahte ho toh change karo:
+
 ```env
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/mini_project_manager
-JWT_SECRET=default_super_secret_key_change_me_in_production
+JWT_SECRET=your_super_secret_key_here
+NODE_ENV=development
 ```
 
-### 🏃 3. Run the Application
-Start both the Express backend server and the Vite React frontend concurrently with one single command from the root folder:
+> **💡 Note:** Agar MongoDB nahi hai toh chinta mat karo — app automatically `data.json` file use kar lega!
+
+### Step 3 — Run Karo
+
 ```bash
 npm run dev
 ```
-Once run:
-*   **Frontend Client**: `http://localhost:5173` (Vite dev server)
-*   **Backend API Service**: `http://localhost:5000`
 
-### 🧪 4. Run API Automated Tests
-To run the automated integration tests checking authentication flow, secure routing, validations, and project/task CRUD APIs:
+Ye command dono simultaneously start karta hai:
+
+| Service | URL |
+|---|---|
+| 🌐 Frontend (React) | http://localhost:5173 |
+| ⚙️ Backend (Express) | http://localhost:5000 |
+
+### Step 4 — Tests Chalao (Optional)
+
 ```bash
 npm run test
 ```
 
 ---
 
-## 🌐 API Specifications
+## 📡 API Documentation
 
-### 🔒 1. Authentication APIs (Public)
-*   `POST /api/auth/register` - Register a new account.
-*   `POST /api/auth/login` - Sign in to get a signed JWT token.
+### Base URL
+```
+http://localhost:5000/api
+```
 
-### 📂 2. Projects CRUD APIs (Protected)
-*   `GET /api/projects` - Get all projects owned by the user, including computed task counts for each project.
-*   `POST /api/projects` - Create a new project.
-*   `GET /api/projects/:id` - Retrieve project details and all its related tasks in one call.
-*   `PUT /api/projects/:id` - Update project details.
-*   `DELETE /api/projects/:id` - Delete project (includes cascade task deletion).
+> 🔒 **Protected routes** me `Authorization: Bearer <token>` header zaroori hai
 
-### 📋 3. Tasks CRUD APIs (Protected)
-*   `POST /api/projects/:id/tasks` - Create a task nested inside the specified project.
-*   `PUT /api/tasks/:id` - Update task details, assignee, or column state status (`todo`, `in-progress`, `done`).
-*   `DELETE /api/tasks/:id` - Delete a task.
+---
+
+### 🔑 Auth APIs (Public)
+
+#### Register
+```http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "yourpassword"
+}
+```
+
+**Response (201):**
+```json
+{
+  "message": "Registration successful!",
+  "token": "eyJhbGciOiJIUzI1NiIs...",
+  "user": { "id": "abc123", "email": "user@example.com" }
+}
+```
+
+---
+
+#### Login
+```http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "yourpassword"
+}
+```
+
+**Response (200):**
+```json
+{
+  "message": "Login successful!",
+  "token": "eyJhbGciOiJIUzI1NiIs...",
+  "user": { "id": "abc123", "email": "user@example.com" }
+}
+```
+
+---
+
+### 📂 Projects APIs (Protected 🔒)
+
+| Method | Endpoint | Kya karta hai |
+|---|---|---|
+| `GET` | `/api/projects` | Saare projects fetch karo (task count ke saath) |
+| `POST` | `/api/projects` | Naya project banao |
+| `GET` | `/api/projects/:id` | Ek project + uske tasks |
+| `PUT` | `/api/projects/:id` | Project update karo |
+| `DELETE` | `/api/projects/:id` | Project delete karo (saare tasks bhi delete honge) |
+
+**Project banane ka example:**
+```http
+POST /api/projects
+Authorization: Bearer <token>
+
+{
+  "name": "Website Redesign",
+  "description": "Corporate landing page ko naya look dena hai"
+}
+```
+
+---
+
+### 📋 Tasks APIs (Protected 🔒)
+
+| Method | Endpoint | Kya karta hai |
+|---|---|---|
+| `POST` | `/api/projects/:id/tasks` | Project me naya task add karo |
+| `PUT` | `/api/tasks/:id` | Task update karo (status, assignee, etc.) |
+| `DELETE` | `/api/tasks/:id` | Task delete karo |
+
+**Task banane ka example:**
+```http
+POST /api/projects/abc123/tasks
+Authorization: Bearer <token>
+
+{
+  "title": "Design Figma Mockups",
+  "description": "Homepage ke liye responsive mockups banana",
+  "status": "todo",
+  "assignedTo": "Rahul"
+}
+```
+
+**Task status values:** `todo` | `in-progress` | `done`
+
+---
+
+### 🏥 Health Check
+
+```http
+GET /api/health
+```
+
+```json
+{
+  "status": "OK",
+  "timestamp": "2026-05-20T19:00:00.000Z",
+  "database": "MongoDB"   // ya "Local JSON File"
+}
+```
 
 ---
 
 ## 📐 Data Models
 
-### 📂 Project
+### User
 ```json
 {
-  "id": "unique-uuid-or-objectid",
-  "name": "Website Redesign",
-  "description": "Redo the corporate landing page and blog",
-  "userId": "owner-user-uuid",
-  "createdAt": "2026-05-20T18:45:28.000Z"
+  "id": "uuid-ya-objectid",
+  "email": "user@example.com",
+  "password": "hashed-password"
 }
 ```
 
-### 📋 Task
+### Project
 ```json
 {
-  "id": "unique-uuid-or-objectid",
-  "projectId": "parent-project-uuid",
+  "id": "uuid-ya-objectid",
+  "name": "Website Redesign",
+  "description": "Project description",
+  "userId": "owner-id",
+  "createdAt": "2026-05-20T18:45:00.000Z"
+}
+```
+
+### Task
+```json
+{
+  "id": "uuid-ya-objectid",
+  "projectId": "parent-project-id",
   "title": "Design Figma Mockups",
-  "description": "Create the visual assets and responsive mockups",
+  "description": "Task details",
   "status": "todo | in-progress | done",
-  "assignedTo": "Alice Smith",
-  "createdAt": "2026-05-20T18:47:35.000Z",
-  "updatedAt": "2026-05-20T18:49:14.000Z"
+  "assignedTo": "Rahul",
+  "createdAt": "2026-05-20T18:47:00.000Z",
+  "updatedAt": "2026-05-20T18:49:00.000Z"
 }
 ```
 
 ---
 
-## ✨ Features Checklist (All Specs Met + Bonuses)
-- [x] **Registration & Login Screen**: Seamless form with email/password verification and switching actions.
-- [x] **Joi API Validations**: Form errors returned elegantly by server schemas.
-- [x] **JWT Auth & Session Storage**: Protected routes preventing unauthenticated dashboard visits.
-- [x] **Projects Dashboard**: Responsive list/grid cards featuring created dates, task quantities, and project edit/delete actions.
-- [x] **Analytics Overview Stats Banner**: Interactive visual metrics calculations.
-- [x] **Project Details Page**: Displays current project details with full breadcrumb navigation.
-- [x] **Interactive Kanban Board**: Clean visual columns representing task categories (`To Do`, `In Progress`, `Done`).
-- [x] **Directional Quick Move Controls**: Single-click task state modifications (move tasks between stages rapidly).
-- [x] **Task Search & Column Filters**: Live React-state filters to find tasks in a flash.
-- [x] **Form Validations**: Live field checks on project and task creation.
-- [x] **Shimmer Skeleton States**: Premium interface placeholders.
-- [x] **Global Toast Context**: Beautiful floating response messages.
+## 🗃️ Available Scripts
+
+| Command | Kya karta hai |
+|---|---|
+| `npm run setup` | Frontend + Backend dono ke dependencies install karo |
+| `npm run dev` | Dono servers simultaneously start karo |
+| `npm run test` | Backend integration tests chalao |
+| `npm run build` | Frontend ka production build banao |
+| `npm start` | Sirf backend start karo (production) |
+
+---
+
+## 💾 Dual Database — Kaise kaam karta hai?
+
+```
+App start hoti hai
+       ↓
+MongoDB se connect karne ki koshish
+       ↓
+   ┌───┴───┐
+   ↓       ↓
+Success  Failed / Timeout
+   ↓       ↓
+MongoDB  data.json (local file)
+mode     fallback mode
+```
+
+Dono modes me **same controllers, routes, aur validation** kaam karta hai. Switch transparent hai!
+
+---
+
+## 🧪 Testing
+
+Tests cover karte hain:
+- ✅ User registration + login flow
+- ✅ Protected route access (without token = 401)
+- ✅ Project CRUD operations
+- ✅ Task creation aur status update
+- ✅ Joi validation errors
+
+```bash
+npm run test
+```
+
+---
+
+## 🤝 Contributing
+
+1. Fork karo
+2. Feature branch banao: `git checkout -b feature/cool-feature`
+3. Commit karo: `git commit -m 'Add cool feature'`
+4. Push karo: `git push origin feature/cool-feature`
+5. Pull Request open karo
+
+---
+
+<div align="center">
+
+Made with ❤️ | ProManage — *Apne projects ka boss bano!*
+
+</div>
